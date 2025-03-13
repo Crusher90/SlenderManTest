@@ -3,17 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "TCharacterBase.h"
-#include "TEnemy.generated.h"
+#include "Runtime/AIModule/Classes/AIController.h"
+#include "TAIController.generated.h"
 
 UCLASS()
-class SLENDERMAN_API ATEnemy : public ATCharacterBase
+class SLENDERMAN_API ATAIController : public AAIController
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
-	ATEnemy();
+	// Sets default values for this actor's properties
+	ATAIController();
 
 protected:
 	// Called when the game starts or when spawned
