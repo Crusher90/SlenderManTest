@@ -5,6 +5,7 @@
 
 #include "GameFramework/Character.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 void ATPlayerController::BeginPlay()
 {
@@ -25,6 +26,8 @@ void ATPlayerController::SetupInputComponent()
 		InputComp->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ThisClass::Move);
 		InputComp->BindAction(LookAction, ETriggerEvent::Triggered, this, &ThisClass::Look);
 		InputComp->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ThisClass::Jump);
+		InputComp->BindAction(SprintAction, ETriggerEvent::Triggered, this, &ThisClass::StartSprint);
+		InputComp->BindAction(SprintAction, ETriggerEvent::Completed, this, &ThisClass::StopSprint);
 	}
 }
 
@@ -56,4 +59,18 @@ void ATPlayerController::Jump()
 	check(JumpAction);
 	check(GetCharacter());
 	GetCharacter()->Jump();
+}
+
+void ATPlayerController::StartSprint()
+{
+	check(SprintAction);
+	check(GetCharacter());
+	GetCharacter()->GetCharacterMovement()->MaxWalkSpeed = 700.f;
+}
+
+void ATPlayerController::StopSprint()
+{
+	check(SprintAction);
+	check(GetCharacter());
+	GetCharacter()->GetCharacterMovement()->MaxWalkSpeed = 450.f;
 }

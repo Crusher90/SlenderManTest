@@ -20,7 +20,7 @@ class SLENDERMAN_API ATPlayerController : public APlayerController
 protected:
 	// Begin play
 	virtual void BeginPlay() override;
-
+	
 	// setup input for player
 	virtual void SetupInputComponent() override;
 
@@ -41,6 +41,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Inputs")
 	TObjectPtr<UInputAction> JumpAction;
 
+	// player Sprint input
+	UPROPERTY(EditDefaultsOnly, Category="Inputs")
+	TObjectPtr<UInputAction> SprintAction;
+
 	UPROPERTY(EditDefaultsOnly, Category="Inputs")
 	float GameSensitivity = 45.f;
 
@@ -53,4 +57,10 @@ private:
 
 	// Logic that actually jumps the player
 	void Jump();
+
+	// player start sprint
+	void StartSprint();
+
+	// player stop sprint
+	void StopSprint();
 };
