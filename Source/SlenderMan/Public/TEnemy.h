@@ -16,10 +16,17 @@ public:
 	ATEnemy();
 
 protected:
+	UFUNCTION()
+	virtual void OnCapsuleOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+		int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere, Category="Enemy Fields")
+	float DamageAmount = 20.f;
 };

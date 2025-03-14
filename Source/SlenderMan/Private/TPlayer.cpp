@@ -36,6 +36,25 @@ ATPlayer::ATPlayer()
 	GetCharacterMovement()->NavAgentProps.bCanCrouch = true;
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
+
+	Health = MaxHealth;
+}
+
+float ATPlayer::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+	class AController* EventInstigator, AActor* DamageCauser)
+{
+	if (Health - DamageAmount <= 0.f)
+	{
+		Health = 0.f;
+		SetHUDHealth();
+		Death();
+	}
+	else
+	{
+		Health -= DamageAmount;
+		SetHUDHealth();
+	}
+	return DamageAmount;
 }
 
 // Called when the game starts or when spawned
