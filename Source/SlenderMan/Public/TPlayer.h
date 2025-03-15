@@ -28,6 +28,8 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category="Player Field")
 	void SetHUDHealth();
 
+	void BatteryPickup_Implementation(const float AmountToSet);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -44,4 +46,10 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attributes", meta = (AllowPrivateAccess = "true"))
 	float MaxHealth = 100.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Attributes", meta = (AllowPrivateAccess = "true"))
+	float Battery = 100.0f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attributes", meta = (AllowPrivateAccess = "true"))
+	float MaxBattery = 100.0f;
 };

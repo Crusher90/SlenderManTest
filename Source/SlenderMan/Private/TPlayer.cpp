@@ -38,6 +38,7 @@ ATPlayer::ATPlayer()
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	Health = MaxHealth;
+	Battery = MaxBattery;
 }
 
 float ATPlayer::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
@@ -55,6 +56,13 @@ float ATPlayer::TakeDamage(float DamageAmount, struct FDamageEvent const& Damage
 		SetHUDHealth();
 	}
 	return DamageAmount;
+}
+
+void ATPlayer::BatteryPickup_Implementation(const float AmountToSet)
+{
+	ITPlayerInterface::BatteryPickup_Implementation(AmountToSet);
+	Battery += AmountToSet;
+	Battery = FMath::Clamp(Battery, 0.f, MaxBattery);
 }
 
 // Called when the game starts or when spawned
